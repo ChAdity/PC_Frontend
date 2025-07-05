@@ -1,0 +1,492 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+/* layout */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+body {
+  background: #f1f1f1;
+  margin: 0;
+  font-family: "Poppins";
+}
+/* header {
+  background: #fff;
+} */
+header .container {
+  
+  width: 100%;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1000; 
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header a {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+header .container h1{
+  margin-left: 128px;
+  
+}
+
+/* homepage */
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+}
+
+
+/* General Styles */
+
+
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+/* Hide "Welcome To Your Placement Calendar" on mobile */
+.container h1 {
+  font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .container h1 {
+    display: none; /* Hides text on mobile */
+  }
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  
+}
+
+nav a {
+  margin-left: 14px;
+  text-decoration: none;
+  font-size: 1.1em;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  font-weight: bold;
+}
+
+/* Log out Button */
+nav button {
+  background: #fff;
+  color: #00bcd4;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background: #00bcd4;
+  color: white;
+}
+
+/* Hide Navigation Links on Mobile */
+@media (max-width: 768px) {
+  nav a {
+    display: none; /* Hides all links except the button */
+  }
+
+  nav {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  nav button {
+    margin-left: auto;
+  }
+}
+
+
+
+/* auth forms */
+form.signup, form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #bababa;
+  border-radius: 4px;
+ 
+}
+
+
+
+
+
+
+
+
+
+/* Smooth Transition Effect */
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* Calendar Container */
+.calendar-container {
+  display: flex;
+  flex-direction: row; /* Default: Side-by-side layout */
+  width: 100%;
+  height: 85vh;
+  background: linear-gradient(135deg, #1e1e1e, #121212);
+  color: white;
+  margin-top: 30px;
+  margin-right: 70px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Sidebar (Months) */
+.sidebar {
+  width: 200px;
+  padding: 15px;
+  background: rgba(37, 37, 37, 0.9);
+  backdrop-filter: blur(8px);
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.sidebar li:hover, .sidebar li.active {
+  background: #00bcd4;
+  transform: scale(1.05);
+  color: black;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+}
+
+/* Calendar Panel */
+.calendar-panel {
+  flex-grow: 1;
+  padding: 20px;
+  width: 80vh;
+}
+
+/* Event Sidebar */
+.event-sidebar {
+  width: 300px;
+  padding: 20px;
+  background: rgba(37, 37, 37, 0.9);
+  backdrop-filter: blur(8px);
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  animation: slideIn 0.5s ease-in-out;
+}
+
+/* Event List */
+.event-sidebar ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.event-sidebar li {
+  background: rgba(0, 229, 255, 0.15);
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.event-sidebar li:hover {
+  background: rgba(0, 229, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .calendar-container {
+    flex-direction: column; /* Stack everything vertically */
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-right: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .sidebar h2 {
+    font-size: 1.1rem;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sidebar li {
+    font-size: 0.8rem;
+    padding: 6px;
+    margin: 4px;
+  }
+
+  .calendar-panel {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .event-sidebar {
+    width: 100%;
+    padding: 15px;
+    border-left: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+
+
+
+
+
+
+
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #121212;
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  background: #1E1E1E;
+  border-radius: 15px;
+  padding: 20px;
+  width: 700px;
+  max-width: 90%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Left Section */
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(45deg, #ff5e62, #ff9966);
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+}
+
+.title:nth-child(3) {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+/* Right Section (Login Form) */
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.input-box {
+  margin-bottom: 15px;
+  margin-top: 7px;
+}
+
+.input-box label {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #333333;
+  color: white;
+  margin-top: 4px;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-btn, .google-login-btn, .sign-btn {
+  background: linear-gradient(45deg, #4A90E2, #357ABD);
+  color: white;
+  margin-top: 12px;
+}
+
+.login-btn:hover, .google-login-btn:hover, .sign-btn:hover {
+  background: linear-gradient(45deg, #357ABD, #4A90E2);
+}
+
+/* Error Message */
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .left-section {
+    order: 1;
+    padding-bottom: 10px;
+  }
+
+  .right-section {
+    order: 2;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .profile {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .profile {
+    width: 80px;
+    height: 80px;
+  }
+
+  .input-box label {
+    font-size: 14px;
+  }
+
+  input {
+    padding: 8px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+
+.fc-event {
+  border: none !important;
+}
+
+
+.fc-day-today, .today-date {
+  background-color: #00bcd4 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+
+.fc-daygrid-day.highlight-event {
+  background-color: #8487d7 !important; /* Green highlight */
+  color: white !important;
+  border-radius: 2px;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
