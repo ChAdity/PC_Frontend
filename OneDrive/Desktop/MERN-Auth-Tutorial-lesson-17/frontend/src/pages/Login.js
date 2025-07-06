@@ -28,7 +28,7 @@ const Login = () => {
   };
  
   const handleGoogleLogin = () => {
-    window.open("http://localhost:4000/auth/google?prompt=select_account", "_self"); // Forces Google sign-in prompt
+    window.open("https://pc-backhend-2.onrender.com/auth/google?prompt=select_account", "_self"); // Forces Google sign-in prompt
   };
 
   return (
