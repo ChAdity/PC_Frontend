@@ -1,7 +1,3 @@
-
-  
-
-
 import React, { useState, useRef, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -27,10 +23,21 @@ const CalendarComponent = () => {
       try {
         const response = await axios.get("https://pc-backhend-2.onrender.com/fetch-emails");
 
-        const formattedEvents = response.data.map((email) => {
-          const eventDate = new Date(email.DATE).toISOString().split("T")[0];
-          return { title: email.SUBJECT, date: eventDate,messageId: email.messageId };
-        });
+        const formattedEvents = response.data
+          .map((email) => {
+            const parsedDate = Date.parse(email.DATE);
+            if (isNaN(parsedDate)) {
+              console.error("Invalid date format:", email.DATE);
+              return null;
+            }
+            const eventDate = new Date(parsedDate).toISOString().split("T")[0];
+            return {
+              title: email.SUBJECT,
+              date: eventDate,
+              messageId: email.messageId
+            };
+          })
+          .filter(e => e !== null);
 
         setEmailEvents(formattedEvents);
         console.log("Fetched Events:", formattedEvents);
@@ -47,12 +54,12 @@ const CalendarComponent = () => {
       document.querySelectorAll(".fc-day").forEach((cell) => {
         const cellDate = cell.getAttribute("data-date");
         if (emailEvents.some((event) => event.date === cellDate)) {
-          cell.classList.add("highlight-event"); // Custom class for event dates
+          cell.classList.add("highlight-event");
         } else {
           cell.classList.remove("highlight-event");
         }
       });
-    }, 500); // Give time for calendar rendering
+    }, 500);
   }, [emailEvents, selectedMonth]);
 
   const handleDateClick = (info) => {
@@ -79,17 +86,16 @@ const CalendarComponent = () => {
     }
   };
 
-  // Function to open Gmail with the subject search
   const openGmailWithSubject = (messageId) => {
-    if (!messageId) return; //  Prevent undefined errors
+    if (!messageId) return;
     const gmailSearchUrl = `https://mail.google.com/mail/u/0/#inbox/${messageId}`;
     window.open(gmailSearchUrl, "_blank");
   };
+
   return (
     <>
       <Navbar />
       <div className="calendar-container">
-        {/* Sidebar for selecting months */}
         <div className="sidebar">
           <h2>{new Date().getFullYear()}</h2>
           <ul>
@@ -105,7 +111,6 @@ const CalendarComponent = () => {
           </ul>
         </div>
 
-        {/* Calendar Panel */}
         <div className="calendar-panel">
           <FullCalendar
             ref={calendarRef}
@@ -119,11 +124,10 @@ const CalendarComponent = () => {
             headerToolbar={false}
             fixedWeekCount={false}
             showNonCurrentDates={false}
-            eventContent={() => null} // Hide event text, highlight only
+            eventContent={() => null}
           />
         </div>
 
-        {/* Sidebar for displaying event details */}
         <div className="event-sidebar">
           <h2>{selectedDate ? selectedDate : "Today's Events"}</h2>
           {selectedEvents.length > 0 ? (
@@ -132,7 +136,7 @@ const CalendarComponent = () => {
                 <li
                   key={index}
                   onClick={() => openGmailWithSubject(event.messageId)}
-                  style={{ cursor: "pointer" }} // No underline, no color change
+                  style={{ cursor: "pointer" }}
                 >
                   {event.title}
                 </li>
