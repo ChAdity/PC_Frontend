@@ -124,7 +124,7 @@ const CalendarComponent = () => {
             headerToolbar={false}
             fixedWeekCount={false}
             showNonCurrentDates={false}
-            eventContent={() => null}
+            
           />
         </div>
 
