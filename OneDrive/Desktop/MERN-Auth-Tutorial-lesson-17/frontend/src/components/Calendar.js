@@ -25,7 +25,7 @@ const CalendarComponent = () => {
   useEffect(() => {
     const fetchEmails = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/fetch-emails");
+        const response = await axios.get("https://pc-backhend-2.onrender.com/fetch-emails");
 
         const formattedEvents = response.data.map((email) => {
           const eventDate = new Date(email.DATE).toISOString().split("T")[0];
