@@ -8,7 +8,7 @@ import "../index.css"; // Ensure proper styles
 
 const CalendarComponent = () => {
 
-  console.log("CALENDAR COMPONENT IS MOUNTED");
+  
 
 
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
@@ -25,9 +25,7 @@ const CalendarComponent = () => {
   useEffect(() => {
     const fetchEmails = async () => {
       try {
-       const response = await axios.get("https://pc-backhend-2.onrender.com/fetch-emails", {
-  withCredentials: true
-});
+       const response = await axios.get("https://pc-backhend-2.onrender.com/fetch-emails");
         const formattedEvents = response.data
           .map((email) => {
             const parsedDate = Date.parse(email.DATE);
@@ -117,9 +115,7 @@ const CalendarComponent = () => {
         </div>
 
         <div className="calendar-panel">
-         <pre style={{ background: "#eee", padding: "1rem" }}>
-  TEST: This pre block renders
-</pre>
+         
 
 
           <FullCalendar
@@ -134,7 +130,8 @@ const CalendarComponent = () => {
             headerToolbar={false}
             fixedWeekCount={false}
             showNonCurrentDates={false}
-            
+            eventContent={() => null}
+
           />
         </div>
 
