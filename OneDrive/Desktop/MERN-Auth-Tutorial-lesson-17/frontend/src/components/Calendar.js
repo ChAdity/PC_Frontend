@@ -4,12 +4,9 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
 import Navbar from "./Navbar";
-import "../index.css"; // Ensure proper styles
+import "../index.css"; 
 
 const CalendarComponent = () => {
-
-  
-
 
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedDate, setSelectedDate] = useState(null);
